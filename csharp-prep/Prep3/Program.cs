@@ -7,7 +7,7 @@ class Program
         Random randomGenerator = new Random();
         int magicNumber = randomGenerator.Next(1, 101);//I changed this to 11 but it didnt work, why?
 
-        int guess = -1;
+        int guess = -1; // I don´t understand why this needs to be under 0
 
          while (guess != magicNumber)
 
