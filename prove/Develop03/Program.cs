@@ -23,7 +23,7 @@ public class ScriptureReference
 
     public ScriptureReference(string reference)
     {
-        // Assuming the reference is in the format "Book Chapter:Verse" or "Book Chapter:Verse-EndVerse"
+        
         string[] parts = reference.Split(' ');
 
         Book = parts[0];
