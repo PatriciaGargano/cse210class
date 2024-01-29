@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Threading;
 
 class Program
@@ -102,7 +101,7 @@ class Activity
     protected void ShowPrepareMessage()
     {
         Console.WriteLine("Prepare to begin...");
-        Thread.Sleep(3000);
+        SpinForSeconds(3);
     }
 
     protected void ShowEndMessage(int duration)
@@ -114,6 +113,27 @@ class Activity
     protected virtual void PerformActivity(int duration)
     {
         // To be overridden by subclasses
+    }
+
+    protected void SpinForSeconds(int seconds)
+    {
+        for (int i = 0; i < seconds; i++)
+        {
+            Console.Write("/");
+            Thread.Sleep(250);
+            Console.Write("\b");
+            Console.Write("-");
+            Thread.Sleep(250);
+            Console.Write("\b");
+            Console.Write("\\");
+            Thread.Sleep(250);
+            Console.Write("\b");
+            Console.Write("|");
+            Thread.Sleep(250);
+            Console.Write("\b");
+        }
+
+        Console.WriteLine();
     }
 }
 
@@ -128,9 +148,9 @@ class BreathingActivity : Activity
         for (int i = 0; i < duration; i++)
         {
             Console.WriteLine("Breathe in...");
-            Thread.Sleep(2000);
+            SpinForSeconds(2);
             Console.WriteLine("Breathe out...");
-            Thread.Sleep(2000);
+            SpinForSeconds(2);
         }
     }
 }
@@ -157,7 +177,7 @@ class ReflectionActivity : Activity
         {
             string prompt = prompts[random.Next(prompts.Length)];
             Console.WriteLine(prompt);
-            Thread.Sleep(2000);
+            SpinForSeconds(2);
             AskReflectionQuestions();
         }
     }
@@ -168,15 +188,14 @@ class ReflectionActivity : Activity
         {
             "Why was this experience meaningful to you?",
             "Have you ever done anything like this before?",
-            "Will you do this again?",
-            "Are you going to share your experience with others?",
-            "Will you recommend this activity"
+            "Would you recommend this activity?",
+            "Will you do this activity again?"
         };
 
         foreach (string question in questions)
         {
             Console.WriteLine(question);
-            Thread.Sleep(2000);
+            SpinForSeconds(2);
         }
     }
 }
@@ -204,7 +223,7 @@ class ListingActivity : Activity
         {
             string prompt = prompts[random.Next(prompts.Length)];
             Console.WriteLine(prompt);
-            Thread.Sleep(5000);  // Give more time for listing
+            SpinForSeconds(5);  // Give more time for listing
             ListItems();
         }
     }
